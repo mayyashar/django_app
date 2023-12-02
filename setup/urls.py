@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from playground import views
+from playground.views import create
+
 
 
 
@@ -25,5 +27,8 @@ urlpatterns = [
     path('playground/', include('playground.urls')),
     # path('', include('authentication.urls'))
     path('', include('playground.urls')),
+    path('create/', views.create, name="creat"),
+    path('sent/', views.sent, name='sent'),
+
 
 ]

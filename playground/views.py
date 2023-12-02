@@ -10,6 +10,10 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect 
 from django.contrib.auth import authenticate, login, logout
 from .forms import createNewList
+from django.contrib.auth.decorators import login_required
+from .models import FormData
+
+
 # Create your views here.
 def say_hello(request):
     return HttpResponse('hello world')
@@ -78,11 +82,35 @@ def signout(request):
     messages.success(request, "Logged Out Successfully!!")
     return redirect('home')
 
-def create(response):
-    if response.method =="POST":
-        form= createNewList(response.POST)
-    else:
-        form= createNewList()
-    return render(response, 'create.html', {'form':form})
+def sent(request):
+    return render(request, 'sent.html')
 
+def create(request):
+    if request.method == "POST":
+        form = createNewList(request.POST)
+        if form.is_valid():
+            form_data = form.save(commit=False)
+            form_data.save()
+            return redirect('sent')
+            
+        # Your form processing logic here
+        else:
+            print(form.errors)
+            return render(request, 'create.html', {'form': form})
+    else:
+        form = createNewList()
+        return render(request, 'create.html', {'form': form})
+
+
+
+
+
+  
+   
+# def create(response):
+#     if response.method =="POST":
+#         form= createNewList(response.POST)
+#     else:
+#         form= createNewList()
+#     return render(response, 'create.html', {'form':form})
 
