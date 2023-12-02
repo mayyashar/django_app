@@ -5,9 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #d88282;
+        }
+
+        .centered-title {
+            text-align: center;
+            padding: 20px;
+            background-color: #f2d4d4;
+        }
+    </style>
+    
 </head>
 <body>
-
+    <div class="centered-title">
     {% for message in messages %}
     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
     <strong>Message:</strong> {{ message }}

@@ -3,9 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #d88282;
+        }
+
+        .centered-title {
+            text-align: center;
+            padding: 20px;
+            background-color: #f2d4d4;
+        }
+    </style>
     <title>create New List</title>
+    
 </head>
 <body>
+    <div class="centered-title">
+
     <form method="post" action="/create/">
         {% csrf_token %}
         {{form.as_p}}
