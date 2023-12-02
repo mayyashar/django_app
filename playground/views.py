@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import createNewList
 from django.contrib.auth.decorators import login_required
 from .models import FormData
+from django.contrib.auth.decorators import user_passes_test
+
 
 
 # Create your views here.
@@ -85,21 +87,38 @@ def signout(request):
 def sent(request):
     return render(request, 'sent.html')
 
+def forbbiden(request):
+    return render(request, 'forbbiden.html')
+
+def super(request):
+    form_data_list = FormData.objects.all()
+    return render(request, 'super.html', {'form_data_list': form_data_list})
+
+def is_superuser(user):
+    return user.is_superuser if user else False
+
+def admin_area(request):
+    return redirect('super') if request.user.is_superuser else redirect('forbbiden')   
+
 def create(request):
     if request.method == "POST":
         form = createNewList(request.POST)
         if form.is_valid():
             form_data = form.save(commit=False)
             form_data.save()
-            return redirect('sent')
-            
-        # Your form processing logic here
+            return redirect('super') if request.user.is_superuser else redirect('sent')            
         else:
             print(form.errors)
             return render(request, 'create.html', {'form': form})
     else:
         form = createNewList()
         return render(request, 'create.html', {'form': form})
+
+         
+
+
+
+
 
 
 

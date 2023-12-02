@@ -16,13 +16,12 @@
     </button>
     </div>
     {%endfor%}
-    
-    <h3>Sign Up</h3>
+
+    <h3>Login</h3>
 
     <form action="/Login" method="post">
     {% csrf_token %}
-    {% csrf_token %}
-    
+
         <label for="">Username</label>
         <input type="text" name="username" id="username" placeholder="Enter your Username" required>
         <br>

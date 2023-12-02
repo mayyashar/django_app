@@ -1,0 +1,25 @@
+{% block content %}
+  <h2>Form Data</h2>
+  <form method="post" action="/super/">
+    {% csrf_token %}
+    <ul>
+      {% for form_data in form_data_list %}
+        <li>
+          <strong>Name:</strong> {{ form_data.name }}<br>
+          <strong>Age:</strong> {{ form_data.age }}<br>
+          <strong>Healthy:</strong> {{ form_data.get_healthy_display }}<br>
+          <strong>fever:</strong> {{ form_data.fever}}<br>
+          <strong>Blood Pressure</strong> {{ form_data.Blood_Pressure}}<br>
+          <strong>details</strong> {{ form_data.specify}}<br>
+
+
+
+
+          <!-- Add more fields as needed -->
+        </li>
+      {% endfor %}
+    </ul>
+  </form>
+{% endblock %}
+
+

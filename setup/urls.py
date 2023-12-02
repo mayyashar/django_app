@@ -26,9 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('playground/', include('playground.urls')),
     # path('', include('authentication.urls'))
-    path('', include('playground.urls')),
-    path('create/', views.create, name="creat"),
-    path('sent/', views.sent, name='sent'),
-
+    path('', include('playground.urls'))
 
 ]

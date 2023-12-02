@@ -9,6 +9,13 @@ urlpatterns = [
     path('Login', views.Login, name="Login"),
     path('signout', views.signout, name="signout"),
     path('create/', views.create, name="create"),
+    path('sent/', views.sent, name='sent'),
+    path('super/', views.super, name='super'),
+    path('admin_area/', views.admin_area, name='admin_area'),
+    path('forbbiden/', views.forbbiden, name='forbbiden'),
+
+
+    
 
 
 ]
